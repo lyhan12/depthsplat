@@ -137,7 +137,8 @@ def train(cfg_dict: DictConfig):
         accelerator="gpu",
         logger=logger,
         devices=torch.cuda.device_count(),
-        strategy='ddp' if torch.cuda.device_count() > 1 else "auto",
+        #strategy='ddp' if torch.cuda.device_count() > 1 else "auto",
+        strategy='ddp_find_unused_parameters_true',
         callbacks=callbacks,
         val_check_interval=cfg.trainer.val_check_interval,
         enable_progress_bar=cfg.mode == "test",
@@ -177,6 +178,7 @@ def train(cfg_dict: DictConfig):
         print("test:", len(data_module.test_dataloader()))
 
     strict_load = not cfg.checkpointing.no_strict_load
+    strict_load = False
 
     if cfg.mode == "train":
         # only load monodepth

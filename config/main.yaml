@@ -7,8 +7,8 @@ defaults:
 
 wandb:
   project: depthsplat
-  entity: placeholder
-  name: placeholder
+  entity: lyhan12-umd
+  name: depthsplat
   mode: online
   id: null
 
